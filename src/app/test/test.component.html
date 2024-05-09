@@ -1,0 +1,11 @@
+<div>
+  <input #passInput [class]="inputClass" [type]="inputType" />
+  <button (click)="onToggle()">Toggle</button>
+  <button (click)="onCheck(passInput.value)">Check Pass</button>
+</div>
+
+<div>
+  <button (click)="onInc()">Inc</button>
+  <button (click)="onDec()">Dec</button>
+</div>
+<div>{{ count }}</div>

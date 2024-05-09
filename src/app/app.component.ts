@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { TestComponent } from './test/test.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  imports: [TestComponent],
+  template: `<h1>{{ title }}</h1>
+    <div>
+      <app-test />
+    </div> `,
+  // templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'todo-list';
+  title = 'GDG Cloud Abidjan';
 }
