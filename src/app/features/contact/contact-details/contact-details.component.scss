@@ -1,0 +1,24 @@
+/* Details */
+.details {
+  border: 3px solid #2c5e77;
+  border-radius: 5px;
+  width: 400px;
+  padding: 20px;
+  margin: 10px;
+  .details-row {
+    display: flex;
+    margin-top: 10px;
+    .label {
+      font-size: 1.8rem;
+      margin-right: 15px;
+      color: #2c5e77;
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+    .value {
+      border-radius: 5px;
+      font-size: 1.8rem;
+      color: #1a1a1a;
+    }
+  }
+}
