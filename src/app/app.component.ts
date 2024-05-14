@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { TestComponent } from './test/test.component';
 import { ContactDetailsComponent } from './features/contact/contact-details/contact-details.component';
 import { Test3Component } from './test-3/test-3.component';
@@ -6,31 +6,28 @@ import { Test3Component } from './test-3/test-3.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Test3Component],
-  template: `<h1>{{ title }}</h1>
-    <div>
-      <app-test-3
-        (error)="onErrorCb($event)"
-        (success)="onSuccessCb($event)"
-        [disabled]="true"
-        [firstName]="valeur"
-        [sex]="'O'"
-      />
-    </div> `,
-  // templateUrl: './app.component.html',
+  imports: [],
+  template: `<h1>{{ age() }}</h1>
+    <h1>{{ moyenne() }}</h1>
+    <button (click)="onSet()">Set</button>
+    <button (click)="onUpdate()">Update</button> `,
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'GDG Cloud Abidjan';
-  valeur = 'valeur';
+  note1 = signal(10);
+  note2 = signal(20);
 
-  onErrorCb(ev: { btn: string }) {
-    console.log('#Error#');
-    console.log(ev);
+  moyenne = computed(() => {
+    return (this.note1() + this.note2()) / 2;
+  });
+
+  age = signal(30);
+
+  onSet() {
+    this.age.set(15);
   }
-
-  onSuccessCb(ev: { btn: string }) {
-    console.log('Success !!');
-    console.log(ev);
+  onUpdate() {
+    this.note1.update((val) => val + 10);
   }
 }
