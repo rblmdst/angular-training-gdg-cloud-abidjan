@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Contact } from '../../../models';
 
@@ -10,10 +10,5 @@ import { Contact } from '../../../models';
   styleUrl: './contact-details.component.scss',
 })
 export class ContactDetailsComponent {
-  contact: Contact = {
-    id: 'abaef',
-    lastName: 'Henri',
-    firstName: 'Kokou',
-    phoneNumber: '+22570000000',
-  };
+  @Input({ required: true }) contact!: Contact;
 }
