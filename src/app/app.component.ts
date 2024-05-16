@@ -1,28 +1,83 @@
-import { Component, computed, signal } from '@angular/core';
-import { TestComponent } from './test/test.component';
-import { ContactDetailsComponent } from './features/contact/contact-details/contact-details.component';
-import { Test3Component } from './test-3/test-3.component';
-import { Contact } from './models';
+import {
+  CommonModule,
+  NgClass,
+  NgFor,
+  NgIf,
+  NgStyle,
+  NgSwitch,
+  NgSwitchCase,
+  NgSwitchDefault,
+} from '@angular/common';
+import { Component } from '@angular/core';
+import { FormsModule, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ContactDetailsComponent],
+  imports: [
+    NgIf,
+    NgFor,
+    NgClass,
+    NgSwitch,
+    NgSwitchCase,
+    NgSwitchDefault,
+    NgStyle,
+    FormsModule,
+  ],
   template: `
-    <app-contact-details (nameClick)="onCb($event)" [contact]="contact" />
+    <!-- IF -->
+    <input #level type="text" />
+    <button (click)="onCb(level.value)">Click</button>
+
+    <h1
+      [ngClass]="{ danger: myColor == 'red', success: myColor == 'green' }"
+      [ngStyle]="{ color: myColor }"
+    >
+      Hello
+    </h1>
+    <button (click)="onCbStyle()">Style</button>
+    <!-- <div>
+      <p *ngIf="devLevel === 'j'">Junior</p>
+      <p *ngIf="devLevel === 'm'">Mid</p>
+      <p *ngIf="devLevel === 's'">Senior</p>
+      <p *ngIf="devLevel === 'j'">No value selected</p>
+    </div> -->
+    <!-- For -->
+    <!-- <ul>
+      <li *ngFor="let product of products; let i = index; let paire = even">
+        {{ paire }} - {{ product }}
+      </li>
+    </ul> -->
+    <!-- Switch -->
+    <!-- <div [ngSwitch]="devLevel">
+      <ng-container>
+        <p *ngSwitchCase="'j'">Junior</p>
+        <p *ngSwitchCase="'m'">Mid</p>
+        <p *ngSwitchCase="'s'">Senior</p>
+        <p *ngSwitchDefault>No value selected</p>
+      </ng-container>
+    </div> -->
+
+    <textarea [(ngModel)]="test"></textarea>
+    {{ test }}
   `,
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  test = '';
   title = 'GDG Cloud Abidjan';
-  contact: Contact = {
-    id: 'abaef',
-    lastName: 'Henri20',
-    firstName: 'Kokou',
-    phoneNumber: '+22570000000',
-  };
 
-  onCb(phoneNumber: string) {
-    alert(phoneNumber);
+  products: string[] = ['PC', 'Ecran', 'Souris', 'clavier'];
+
+  devLevel: string | null = null;
+
+  myColor = 'red';
+
+  onCb(value: string) {
+    this.devLevel = value;
+  }
+
+  onCbStyle() {
+    this.myColor = 'green';
   }
 }
