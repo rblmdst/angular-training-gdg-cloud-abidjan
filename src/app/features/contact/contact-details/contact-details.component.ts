@@ -1,4 +1,11 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  input,
+  output,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Contact } from '../../../models';
 
@@ -10,5 +17,14 @@ import { Contact } from '../../../models';
   styleUrl: './contact-details.component.scss',
 })
 export class ContactDetailsComponent {
-  @Input({ required: true }) contact!: Contact;
+  // @Input({ required: true }) contact!: Contact;
+  // contact = input<Contact>();
+  contact = input.required<Contact>();
+
+  // @Output() nameClick = new EventEmitter();
+  nameClick = output<string>();
+
+  onNameClicked() {
+    this.nameClick.emit(this.contact().phoneNumber);
+  }
 }

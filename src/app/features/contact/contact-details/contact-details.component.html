@@ -2,14 +2,14 @@
 <div class="details">
   <div class="details-row">
     <div class="label">Last name :</div>
-    <div class="value">{{ contact.lastName }}</div>
+    <div (click)="onNameClicked()" class="value">{{ contact().lastName }}</div>
   </div>
   <div class="details-row">
     <div class="label">First name :</div>
-    <div class="value">{{ contact.firstName }}</div>
+    <div class="value">{{ contact().firstName }}</div>
   </div>
   <div class="details-row">
     <div class="label">Phone number :</div>
-    <div class="value">{{ contact.phoneNumber }}</div>
+    <div class="value">{{ contact().phoneNumber }}</div>
   </div>
 </div>
