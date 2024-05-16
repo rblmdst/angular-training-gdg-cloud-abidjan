@@ -36,6 +36,14 @@ import { FormsModule, NgModel } from '@angular/forms';
       Hello
     </h1>
     <button (click)="onCbStyle()">Style</button>
+
+    <ng-template>
+      <h1>No value selected</h1>
+    </ng-template>
+
+    <ng-container>
+      <h1>Containe</h1>
+    </ng-container>
     <!-- <div>
       <p *ngIf="devLevel === 'j'">Junior</p>
       <p *ngIf="devLevel === 'm'">Mid</p>
@@ -49,14 +57,17 @@ import { FormsModule, NgModel } from '@angular/forms';
       </li>
     </ul> -->
     <!-- Switch -->
-    <!-- <div [ngSwitch]="devLevel">
-      <ng-container>
-        <p *ngSwitchCase="'j'">Junior</p>
-        <p *ngSwitchCase="'m'">Mid</p>
-        <p *ngSwitchCase="'s'">Senior</p>
-        <p *ngSwitchDefault>No value selected</p>
-      </ng-container>
-    </div> -->
+    <!-- <ng-container *ngIf="">
+        <ng-container *ngFor="">
+        </ng-container>
+      </ng-container> -->
+
+    <ng-container [ngSwitch]="devLevel">
+      <p *ngSwitchCase="'j'">Junior</p>
+      <p *ngSwitchCase="'m'">Mid</p>
+      <p *ngSwitchCase="'s'">Senior</p>
+      <p *ngSwitchDefault>No value selected</p>
+    </ng-container>
 
     <textarea [(ngModel)]="test"></textarea>
     {{ test }}
