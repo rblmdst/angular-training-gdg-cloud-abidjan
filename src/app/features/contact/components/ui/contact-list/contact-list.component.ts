@@ -1,11 +1,12 @@
 import { Component, input, output } from '@angular/core';
-import { Contact } from '../../../models';
 import { NgFor } from '@angular/common';
+import { Contact } from '../../../../../models';
 
 @Component({
   selector: 'app-contact-list',
   standalone: true,
   imports: [NgFor],
+  // providers: [ContactService],
   templateUrl: './contact-list.component.html',
   styleUrl: './contact-list.component.scss',
 })
@@ -14,7 +15,10 @@ export class ContactListComponent {
   details = output<string>();
   delete = output<string>();
 
+  constructor(/* private contactServ: ContactService */) {}
+
   onDetails(contactId: string) {
+    // this.contactServ.getContacts();
     this.details.emit(contactId);
   }
 

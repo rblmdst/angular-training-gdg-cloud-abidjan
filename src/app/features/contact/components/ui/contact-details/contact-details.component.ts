@@ -7,7 +7,7 @@ import {
   output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Contact } from '../../../models';
+import { Contact } from '../../../../../models';
 
 @Component({
   selector: 'app-contact-details',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ContactDetailsComponent } from '../features/contact/contact-details/contact-details.component';
 import { Contact } from '../models';
+import { ContactDetailsComponent } from '../features/contact/components/ui/contact-details/contact-details.component';
 
 @Component({
   selector: 'app-root',

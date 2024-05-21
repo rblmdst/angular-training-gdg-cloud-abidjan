@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { ContactListComponent } from './features/contact/contact-list/contact-list.component';
+import { Component, inject } from '@angular/core';
 import { Contact } from './models';
-import { ContactDetailsComponent } from './features/contact/contact-details/contact-details.component';
 import { NgIf } from '@angular/common';
+import { ContactListComponent } from './features/contact/components/ui/contact-list/contact-list.component';
+import { ContactDetailsComponent } from './features/contact/components/ui/contact-details/contact-details.component';
+import { ContactService } from './features/contact/services/contact-service.service';
 
 @Component({
   selector: 'app-root',
@@ -23,36 +24,22 @@ import { NgIf } from '@angular/common';
 export class AppComponent {
   test = '';
   title = 'GDG Cloud Abidjan';
-  contacts: Contact[] = [
-    {
-      id: 'de8bcf76-e2d6-4930-8f91-73432a3ca2a1',
-      lastName: 'KWAKU',
-      firstName: 'Eric',
-      phoneNumber: '+22570000000',
-    },
-    {
-      id: 'ab8bcf32-e2ab-4930-8fef-00432a1a3ca2',
-      lastName: 'OUSSAMA',
-      firstName: 'Ali',
-      phoneNumber: '+22571200250',
-    },
-    {
-      id: 'cf76de8b-e2d6-4991-8f30-73ca2a1432a3',
-      lastName: 'ADOTE',
-      firstName: 'Hermman',
-      phoneNumber: '+225640002200',
-    },
-  ];
+  contacts: Contact[] = [];
 
   currentContact: Contact | null = null;
 
+  private contactServ = inject(ContactService);
+  constructor(/* private contactServ: ContactService */) {
+    this.contacts = this.contactServ.getAll();
+  }
+
   showDetails(contactId: string) {
-    const contact = this.contacts.find((contact) => contact.id === contactId);
-    this.currentContact = contact ? contact : null;
+    this.currentContact = this.contactServ.getById(contactId);
   }
 
   onDelete(contactId: string) {
-    this.contacts = this.contacts.filter((contact) => contact.id !== contactId);
+    this.contactServ.delete(contactId);
+    this.contacts = this.contactServ.getAll();
     this.currentContact = null;
   }
 }
