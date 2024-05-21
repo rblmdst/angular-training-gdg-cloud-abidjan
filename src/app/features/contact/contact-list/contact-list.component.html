@@ -1,0 +1,19 @@
+<!-- Table -->
+<table class="table">
+  <thead>
+    <tr>
+      <td>First name</td>
+      <td>Last name</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tr *ngFor="let contact of contacts()">
+    <td>{{ contact.firstName }}</td>
+    <td>{{ contact.lastName }}</td>
+    <td>
+      <button>Edit</button>
+      <button (click)="onDelete(contact.id)">Delete</button>
+      <button (click)="onDetails(contact.id)">Details</button>
+    </td>
+  </tr>
+</table>
