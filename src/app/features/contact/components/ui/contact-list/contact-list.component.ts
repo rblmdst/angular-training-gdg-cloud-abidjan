@@ -1,11 +1,12 @@
 import { Component, input, output } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { Contact } from '../../../../../models';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-contact-list',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, RouterLink],
   // providers: [ContactService],
   templateUrl: './contact-list.component.html',
   styleUrl: './contact-list.component.scss',

@@ -11,7 +11,7 @@
     <td>{{ contact.firstName }}</td>
     <td>{{ contact.lastName }}</td>
     <td>
-      <button>Edit</button>
+      <button [routerLink]="'/contacts/edit/' + contact.id">Edit</button>
       <button (click)="onDelete(contact.id)">Delete</button>
       <button (click)="onDetails(contact.id)">Details</button>
     </td>

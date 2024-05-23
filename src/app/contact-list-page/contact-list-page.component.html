@@ -1,0 +1,8 @@
+<app-contact-list
+  [contacts]="contacts"
+  (delete)="onDelete($event)"
+  (details)="showDetails($event)"
+/>
+<ng-container *ngIf="currentContact">
+  <app-contact-details [contact]="currentContact" />
+</ng-container>
