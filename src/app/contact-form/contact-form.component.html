@@ -1,0 +1,30 @@
+<form [formGroup]="contactForm" novalidate class="form">
+  <div class="form-row">
+    <label for="lastName">Last name</label>
+    <input formControlName="lastName" id="lastName" type="text" />
+  </div>
+  <div *ngIf="lastNameCtrl?.errors" class="error">
+    <p *ngIf="lastNameCtrl?.hasError('required')">The field is required.</p>
+    <p *ngIf="lastNameCtrl?.hasError('maxlength')">30 Characters maximum.</p>
+  </div>
+  <div class="form-row">
+    <label for="firstName">First name</label>
+    <input formControlName="firstName" id="firstName" type="text" />
+  </div>
+  <div class="error">
+    <p>The field is required.</p>
+    <p>30 Characters maximum.</p>
+  </div>
+  <div class="form-row">
+    <label for="phoneNumber">Phone number</label>
+    <input formControlName="phoneNumber" id="phoneNumber" type="text" />
+  </div>
+  <div class="error">
+    <p>The field is required.</p>
+    <p>Must be 15 Characters max starting with "+" sign.</p>
+  </div>
+  <div class="form-buttons">
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+  </div>
+</form>

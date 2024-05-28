@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ContactFormComponent } from '../contact-form/contact-form.component';
 
 @Component({
   selector: 'app-edit-contact-page',
   standalone: true,
-  imports: [],
+  imports: [ContactFormComponent],
   templateUrl: './edit-contact-page.component.html',
   styleUrl: './edit-contact-page.component.css',
 })

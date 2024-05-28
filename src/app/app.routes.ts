@@ -13,6 +13,6 @@ export const routes: Routes = [
   },
   // { path: 'contacts', component: ContactListPageComponent },
   // { path: 'contacts/edit/:contactId', component: EditContactPageComponent },
-  // { path: '', redirectTo: 'contacts', pathMatch: 'full' },
+  { path: '', redirectTo: 'contacts', pathMatch: 'full' },
   { path: 'form-control', component: TestFormComponent },
 ];
