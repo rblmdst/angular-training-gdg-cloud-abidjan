@@ -11,10 +11,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class EditContactPageComponent {
   route = inject(ActivatedRoute);
+  params$ = this.route.params;
+
   contactId = '';
   year = '';
   constructor() {
-    this.route.params.pipe(takeUntilDestroyed()).subscribe((params) => {
+    this.params$.pipe(takeUntilDestroyed()).subscribe((params) => {
       this.contactId = params['contactId'];
     });
 

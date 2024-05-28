@@ -3,7 +3,14 @@ import { ContactListPageComponent } from './contact-list-page/contact-list-page.
 import { EditContactPageComponent } from './edit-contact-page/edit-contact-page.component';
 
 export const routes: Routes = [
-  { path: 'contacts', component: ContactListPageComponent },
-  { path: 'contacts/edit/:contactId', component: EditContactPageComponent },
+  {
+    path: 'contacts',
+    children: [
+      { path: '', component: ContactListPageComponent },
+      { path: 'edit/:contactId', component: EditContactPageComponent },
+    ],
+  },
+  // { path: 'contacts', component: ContactListPageComponent },
+  // { path: 'contacts/edit/:contactId', component: EditContactPageComponent },
   { path: '', redirectTo: 'contacts', pathMatch: 'full' },
 ];
