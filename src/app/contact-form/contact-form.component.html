@@ -3,7 +3,7 @@
     <label for="lastName">Last name</label>
     <input formControlName="lastName" id="lastName" type="text" />
   </div>
-  <div *ngIf="lastNameCtrl?.errors" class="error">
+  <div *ngIf="lastNameCtrl?.touched && lastNameCtrl?.errors" class="error">
     <p *ngIf="lastNameCtrl?.hasError('required')">The field is required.</p>
     <p *ngIf="lastNameCtrl?.hasError('maxlength')">30 Characters maximum.</p>
   </div>
@@ -11,20 +11,26 @@
     <label for="firstName">First name</label>
     <input formControlName="firstName" id="firstName" type="text" />
   </div>
-  <div class="error">
-    <p>The field is required.</p>
-    <p>30 Characters maximum.</p>
+  <div *ngIf="firstNameCtrl?.touched && firstNameCtrl?.errors" class="error">
+    <p *ngIf="firstNameCtrl?.hasError('required')">The field is required.</p>
+    <p *ngIf="firstNameCtrl?.hasError('maxlength')">30 Characters maximum.</p>
   </div>
   <div class="form-row">
     <label for="phoneNumber">Phone number</label>
     <input formControlName="phoneNumber" id="phoneNumber" type="text" />
   </div>
-  <div class="error">
-    <p>The field is required.</p>
-    <p>Must be 15 Characters max starting with "+" sign.</p>
+  <div
+    *ngIf="phoneNumberCtrl?.touched && phoneNumberCtrl?.errors"
+    class="error"
+  >
+    <p *ngIf="phoneNumberCtrl?.hasError('required')">The field is required.</p>
+    <p *ngIf="phoneNumberCtrl?.hasError('pattern')">
+      Must be at least 10 Charaters or at most 15 Characters, starting with "+"
+      sign.
+    </p>
   </div>
   <div class="form-buttons">
-    <button type="submit">Submit</button>
+    <button type="submit" (click)="onSubmit()">Submit</button>
     <button type="reset">Reset</button>
   </div>
 </form>

@@ -4,6 +4,8 @@ import { ContactDetailsComponent } from '../features/contact/components/ui/conta
 import { ContactListComponent } from '../features/contact/components/ui/contact-list/contact-list.component';
 import { Contact } from '../models';
 import { ContactService } from '../features/contact/services/contact-service.service';
+import { HttpClient } from '@angular/common/http';
+import { ContactHttpService } from '../contact-service.service';
 
 @Component({
   selector: 'app-contact-list-page',
@@ -15,19 +17,29 @@ import { ContactService } from '../features/contact/services/contact-service.ser
 export class ContactListPageComponent {
   contacts: Contact[] = [];
   currentContact: Contact | null = null;
-  private contactServ = inject(ContactService);
+  // private contactServ = inject(ContactService);
+  private contactService = inject(ContactHttpService);
 
   constructor(/* private contactServ: ContactService */) {
-    this.contacts = this.contactServ.getAll();
+    // this.contacts = this.contactServ.getAll();
+    this.contactService.getAll().subscribe({
+      next: (contacts) => {
+        this.contacts = contacts;
+      },
+      error: (err) => {
+        console.log(err);
+        this.contacts = [];
+      },
+    });
   }
 
   showDetails(contactId: string) {
-    this.currentContact = this.contactServ.getById(contactId);
+    // this.currentContact = this.contactServ.getById(contactId);
   }
 
   onDelete(contactId: string) {
-    this.contactServ.delete(contactId);
+    /* this.contactServ.delete(contactId);
     this.contacts = this.contactServ.getAll();
-    this.currentContact = null;
+    this.currentContact = null; */
   }
 }
